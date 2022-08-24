@@ -3,6 +3,7 @@ package com.contrastsecurity;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import javax.sql.DataSource;
 
@@ -22,7 +23,14 @@ public class App
         mysqlDS.setUser("test");
         mysqlDS.setPassword("test");
 
-        getUser(mysqlDS, "test123");
+        // Using Scanner for Getting Input from User
+        Scanner in = new Scanner(System.in);
+ 
+        String userId = in.nextLine();
+
+        getUser(mysqlDS, userId);
+        
+        in.close();
     }
 
     public static void getUser(DataSource dataSource, String userId){
