@@ -79,4 +79,12 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	@Transactional(readOnly = true)
 	Page<Owner> findAll(Pageable pageable);
 
+	/**
+	 * Delete an {@link Owner} from the data store by id.
+	 * @param id the id to delete
+	 */
+	@Query("DELETE FROM Owner WHERE id =:id")
+	@Transactional(readOnly = false)
+	Owner deleteOwner(@Param("id") Integer id);
+
 }
