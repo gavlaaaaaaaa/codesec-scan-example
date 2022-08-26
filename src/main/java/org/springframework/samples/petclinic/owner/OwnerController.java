@@ -63,11 +63,10 @@ class OwnerController {
 	@DeleteMapping("/owners/{ownerId}")
 	public void deleteOwner(@PathVariable("ownerId") final String id) throws SQLException {
 
-		/*
-		 * try (Connection connection = dataSource.getConnection(); Statement statement =
-		 * connection.createStatement()) {
-		 * statement.execute("DELETE FROM owners WHERE id = " + id); }
-		 */
+		try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
+			statement.execute("DELETE FROM owners WHERE id = " + id);
+		}
+
 	}
 
 	@InitBinder
