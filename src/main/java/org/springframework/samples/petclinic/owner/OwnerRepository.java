@@ -83,8 +83,10 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	 * Delete an {@link Owner} from the data store by id.
 	 * @param id the id to delete
 	 */
-	@Query("DELETE FROM Owner WHERE id =:id")
-	@Transactional(readOnly = false)
-	Owner deleteOwner(@Param("id") Integer id);
+	/*
+	 * @Query("DELETE FROM Owner WHERE id =:id")
+	 *
+	 * @Transactional(readOnly = false) Owner deleteOwner(@Param("id") Integer id);
+	 */
 
 }
