@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.owner;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -63,8 +64,10 @@ class OwnerController {
 	@DeleteMapping("/owners/{ownerId}")
 	public void deleteOwner(@PathVariable("ownerId") final String id) throws SQLException {
 
-		try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
-			statement.execute("DELETE FROM owners WHERE id = " + id);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM owners WHERE id = ?")) {
+			statement.setString(1, id);
+			statement.execute();
 		}
 
 	}
